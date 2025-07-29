@@ -1,0 +1,33 @@
+<div class="register-container">
+  <h2>Register</h2>
+
+  <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <form (ngSubmit)="signUp()" *ngIf="!showConfirmation">
+    <label for="username">Username:</label>
+    <input id="username" [(ngModel)]="username" name="username" required />
+
+    <label for="password">Password:</label>
+    <input id="password" [(ngModel)]="password" name="password" type="password" required />
+
+    <label for="email">Email:</label>
+    <input id="email" [(ngModel)]="email" name="email" type="email" required />
+
+    <button type="submit">Register</button>
+  </form>
+
+  <div *ngIf="showConfirmation">
+    <label for="code">Confirmation Code:</label>
+    <input id="code" [(ngModel)]="code" name="code" />
+
+    <button (click)="confirm()">Confirm</button>
+    <button (click)="resendCode()">Resend Code</button>
+
+    <p class="info" *ngIf="resendMessage">{{ resendMessage }}</p>
+  </div>
+
+  <p class="login-link">
+    Already have an account? <a routerLink="/login">Go back to Login</a>
+  </p>
+</div>

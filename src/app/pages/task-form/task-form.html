@@ -1,0 +1,44 @@
+<div class="task-form-container">
+  <h2>{{ isEditMode ? 'Edit Task' : 'Add New Task' }}</h2>
+
+  <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
+    <label for="title">Title:</label>
+    <input
+      id="title"
+      name="title"
+      [(ngModel)]="title"
+      required
+      ngModel
+    />
+
+    <label for="description">Description:</label>
+    <textarea
+      id="description"
+      name="description"
+      [(ngModel)]="description"
+      required
+      ngModel
+    ></textarea>
+
+    <div *ngIf="isEditMode">
+      <label for="completed">
+        <input
+          type="checkbox"
+          id="completed"
+          name="completed"
+          [(ngModel)]="completed"
+        />
+        Mark as Completed
+      </label>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit">
+        {{ isEditMode ? 'Update Task' : 'Create Task' }}
+      </button>
+      <button type="button" (click)="cancel()">Cancel</button>
+    </div>
+
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </form>
+</div>
